@@ -1,0 +1,13 @@
+{
+  "watch": ["src"],
+  "ignore": ["src/test"],
+  "ext": "ts,js,json",
+  "env": {
+    "NODE_ENV": "development",
+    "DEBUG": "anywize:*",
+    "DEBUG_COLORS": "true",
+    "DEBUG_DEPTH": 5
+  },
+  "exec": "yarn clean && etsc && node --require dotenv/config ./dist/index.js",
+  "legacyWatch": true
+}

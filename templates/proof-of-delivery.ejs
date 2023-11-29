@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Liefernachweis</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet" />
+
+    <style>
+      .roboto {
+        font-family: 'Roboto';
+      }
+
+      .questrial {
+        font-family: 'Questrial';
+        font-weight: normal;
+      }
+
+      .bold {
+        font-weight: bold;
+      }
+
+      .text-right {
+        text-align: right;
+      }
+
+      .font-42 {
+        font-size: 32pt;
+      }
+
+      .font-36 {
+        font-size: 26pt;
+      }
+
+      .font-14 {
+        font-size: 10pt;
+      }
+
+      .font-6 {
+        font-size: 6pt;
+      }
+
+      .px-32 {
+        padding-left: 25px;
+        padding-right: 25px;
+      }
+
+      .py-32 {
+        padding-top: 25px;
+        padding-bottom: 25px;
+      }
+
+      .mb-8 {
+        margin-bottom: 4px;
+      }
+
+      .row {
+        clear: both;
+        display: block;
+        position: relative;
+        margin-bottom: 50px;
+      }
+
+      .col {
+        float: left;
+        width: 49%;
+      }
+
+      .table {
+        width: 100%;
+      }
+
+      .table thead td {
+        border-top: 1px solid #969595;
+      }
+
+      .table th:first-child {
+        border-left: 1px solid #969595;
+      }
+
+      .table td {
+        font-family: 'Roboto';
+        font-size: 10pt;
+        padding: 5px 10px;
+        border-bottom: 1px solid #969595;
+        border-right: 1px solid #969595;
+      }
+
+      .table td:first-child {
+        border-left: 1px solid #969595;
+      }
+
+      .table .w-30 {
+        width: 30%;
+      }
+
+      .table .w-70 {
+        width: 70%;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="px-32">
+      <h1 class="questrial text-right font-42 bold">anywize</h1>
+      <h1 class="questrial font-36">Liefernachweis</h1>
+
+      <div class="py-32 row">
+        <div class="col roboto font-14">
+          <div class="mb-8"><%= stop.Customer.alias %></div>
+          <div class="mb-8"><%= stop.Customer.street %> <% stop.Customer.street_number %></div>
+          <div class="mb-8"><%= stop.Customer.zipcode %> <% stop.Customer.city %></div>
+        </div>
+        <div class="col text-right roboto font-14">
+          <div class="mb-8">Fahrer: <%= stop.driver_name %></div>
+          <div class="mb-8"><%= stop.delivery_date_formatted %> Uhr</div>
+          <div class="mb-8"><%= stop.location.coordinates[1] %>, <%= stop.location.coordinates[0] %></div>
+        </div>
+      </div>
+      <div class="py-32">
+        <table class="table" cellspacing="0">
+          <thead>
+            <tr>
+              <td class="w-30">Auftragsnummer</td>
+              <td class=w-70>Beschreibung</td>
+            </tr>
+          </thead>
+          <tbody>
+            <% for (let i = 0; i < stop.Customer.Orders.length; i += 1) { %>
+              <tr>
+                <td><%= stop.Customer.Orders[i].number %></td>
+                <td><%= stop.Customer.Orders[i].description %></td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+      <% if (stop.signature_file) { %>
+        <div class="py-32">
+          <div style="max-width: 25%;">
+            <div style="padding: 10px; border-bottom: 1px solid black;">
+              <img src="<%= stop.signature_file %>" style="max-width: 100%;" />
+            </div>
+            <div style="text-align: center;" class="font-6">
+              <%= stop.meet_customer ? 'Unterschrift Kunde' : 'Unterschrift Fahrer' %>
+            </div>
+          </div>
+        </div>
+      <% } %>
+    </div>
+    <% if (stop.pictures && stop.pictures.length) { %>
+      <div style="page-break-before: always;">
+        <% for (let i = 0; i < stop.pictures.length; i += 1) { %>
+          <div style="margin-top: 20px;">
+            <img src="<%= stop.pictures[i] %>" style="max-width: 100%;" />
+          </div>
+        <% } %>
+      </div>
+    <% } %>
+  </body>
+</html>

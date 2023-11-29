@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "types": [
+      "node"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "lib": [
+      "es2015",
+      "es2017"
+    ],
+    "target": "es2019",
+    "sourceMap": false,
+    "allowJs": true,
+    "baseUrl": "./src",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "skipLibCheck": true
+  },
+  "exclude": [
+    "apidoc",
+    "node_modules",
+    "postgrator",
+    "tasks",
+    "src/tasks",
+    "src/test",
+    "src/testData",
+    "src/types",
+    ".nyc_output",
+    "coverage",
+    "./dist",
+    "./circleci",
+    "./github",
+    "./*.js",
+    "./*.json",
+    "./*.yml"
+  ]
+}

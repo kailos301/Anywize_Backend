@@ -1,0 +1,1 @@
+ALTER TABLE `orders` ADD `packages` INT NOT NULL DEFAULT '0' AFTER `description`, ADD `departure` VARCHAR(100) NULL AFTER `packages`;

@@ -1,0 +1,1 @@
+ALTER TABLE `customers` ADD `number` VARCHAR(255) NULL AFTER `tour_position`;
